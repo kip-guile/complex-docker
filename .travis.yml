@@ -15,8 +15,7 @@ after_success:
   - docker build -t lockelamora/multi-server ./server
   - docker build -t lockelamora/multi-worker ./worker
   # log in to the docker CLI
-  - docker login -u "$DOCKER_ID" -p "$DOCKER_PASSWORD"
-
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # take these images and push to docker hub
   - docker push lockelamora/multi-client
   - docker push lockelamora/multi-nginx
